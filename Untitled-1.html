@@ -1,0 +1,39 @@
+<h2>Contact Information</h2>
+<script>
+const contactInfo = {
+  phone: '13867964580',
+  email: '1065671799@qq.com'
+};
+
+function formatPhoneNumber(phone) {
+  if (!/^\d{11}$/.test(phone)) {
+    return 'Invalid phone number format';
+  }
+  return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+}
+
+function displayContactInfo() {
+  let container = document.getElementById('contact-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'contact-container';
+    container.style.cssText = `
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+    `;
+    document.body.appendChild(container);
+  }
+
+  const formattedPhone = formatPhoneNumber(contactInfo.phone);
+  const contactHtml = `
+    <div><strong>Phone：</strong>${formattedPhone}</div>
+    <div><strong>Email：</strong>${contactInfo.email}</div>
+  `;
+
+  container.innerHTML = contactHtml;
+}
+
+window.onload = displayContactInfo;
+</script>
